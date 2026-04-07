@@ -8,8 +8,7 @@ type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
+tags: []
 created: '2025-03-01'
 modified: '2025-03-01'
 url: >-
@@ -24,8 +23,7 @@ apis:
       to our server are labelled with a unique ID which is used to query the status
       of the job.
     humanURL: ' https://biosig.lab.uq.edu.au/piscescsm/docs'
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: ' https://biosig.lab.uq.edu.au/piscescsm/docs'
