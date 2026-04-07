@@ -1,10 +1,9 @@
 aid: piscescsm
 name: piscesCSM
 description: >-
-  Here we offer an API (Application Programming Interface) to assist users in
-  integrating piscesCSM into their research pipelines.In summary, all jobs
-  submitted to our server are labelled with a unique ID which is used to query
-  the status of the job. 
+  Here we offer an API (Application Programming Interface) to assist users in integrating
+  piscesCSM into their research pipelines.In summary, all jobs submitted to our server
+  are labelled with a unique ID which is used to query the status of the job.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -20,10 +19,10 @@ apis:
   - aid: piscescsm:piscescsm
     name: piscesCSM
     description: >-
-      Here we offer an API (Application Programming Interface) to assist users
-      in integrating piscesCSM into their research pipelines.In summary, all
-      jobs submitted to our server are labelled with a unique ID which is used
-      to query the status of the job. 
+      Here we offer an API (Application Programming Interface) to assist users in
+      integrating piscesCSM into their research pipelines.In summary, all jobs submitted
+      to our server are labelled with a unique ID which is used to query the status
+      of the job.
     humanURL: ' https://biosig.lab.uq.edu.au/piscescsm/docs'
     tags:
       - API
