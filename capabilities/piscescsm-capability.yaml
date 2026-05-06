@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: piscesCSM API
+  description: The piscesCSM API allows users to integrate piscesCSM drug-pair cancer sensitivity prediction into research
+    pipelines. Submit a pair of small molecules as SMILES strings, then poll the prediction status using the returned job
+    identifier. Results include predictions across multiple cancer types and molecular descriptors for both drugs.
+  tags:
+  - Piscescsm
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: piscescsm
+    baseUri: https://biosig.lab.uq.edu.au/piscescsm/api
+    description: piscesCSM API HTTP API.
+    resources:
+    - name: predict
+      path: /predict
+      operations:
+      - name: submitprediction
+        method: POST
+        description: Submit a drug-pair prediction job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getprediction
+        method: GET
+        description: Retrieve prediction results
+        inputParameters:
+        - name: job_id
+          in: query
+          type: string
+          required: true
+          description: Job identifier returned by submitPrediction.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: piscescsm-rest
+    description: REST adapter for piscesCSM API.
+    resources:
+    - path: /predict
+      name: submitprediction
+      operations:
+      - method: POST
+        name: submitprediction
+        description: Submit a drug-pair prediction job
+        call: piscescsm.submitprediction
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /predict
+      name: getprediction
+      operations:
+      - method: GET
+        name: getprediction
+        description: Retrieve prediction results
+        call: piscescsm.getprediction
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: piscescsm-mcp
+    transport: http
+    description: MCP adapter for piscesCSM API for AI agent use.
+    tools:
+    - name: submitprediction
+      description: Submit a drug-pair prediction job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: piscescsm.submitprediction
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getprediction
+      description: Retrieve prediction results
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: piscescsm.getprediction
+      with:
+        job_id: tools.job_id
+      inputParameters:
+      - name: job_id
+        type: string
+        description: Job identifier returned by submitPrediction.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
