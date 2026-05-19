@@ -1,20 +1,23 @@
 naftiko: 1.0.0-alpha2
 info:
   label: piscesCSM API
-  description: The piscesCSM API allows users to integrate piscesCSM drug-pair cancer sensitivity prediction into research
-    pipelines. Submit a pair of small molecules as SMILES strings, then poll the prediction status using the returned job
-    identifier. Results include predictions across multiple cancer types and molecular descriptors for both drugs.
+  description: 'piscesCSM API. 2 operations. Lead operation: Submit a drug-pair prediction job. Self-contained Naftiko capability
+    covering one Piscescsm business surface.'
   tags:
   - Piscescsm
-  - API
-  created: '2026-05-06'
-  modified: '2026-05-06'
+  - piscesCSM API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PISCESCSM_API_KEY: PISCESCSM_API_KEY
 capability:
   consumes:
   - type: http
     namespace: piscescsm
     baseUri: https://biosig.lab.uq.edu.au/piscescsm/api
-    description: piscesCSM API HTTP API.
+    description: piscesCSM API business capability. Self-contained, no shared references.
     resources:
     - name: predict
       path: /predict
@@ -27,63 +30,74 @@ capability:
         - name: result
           type: object
           value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
       - name: getprediction
         method: GET
         description: Retrieve prediction results
-        inputParameters:
-        - name: job_id
-          in: query
-          type: string
-          required: true
-          description: Job identifier returned by submitPrediction.
         outputRawFormat: json
         outputParameters:
         - name: result
           type: object
           value: $.
+        inputParameters:
+        - name: job_id
+          in: query
+          type: string
+          description: Job identifier returned by submitPrediction.
+          required: true
   exposes:
   - type: rest
-    port: 8080
     namespace: piscescsm-rest
-    description: REST adapter for piscesCSM API.
+    port: 8080
+    description: REST adapter for piscesCSM API. One Spectral-compliant resource per consumed operation, prefixed with /v1.
     resources:
-    - path: /predict
-      name: submitprediction
+    - path: /v1/predict
+      name: predict
+      description: REST surface for predict.
       operations:
       - method: POST
         name: submitprediction
         description: Submit a drug-pair prediction job
         call: piscescsm.submitprediction
+        with:
+          body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /predict
-      name: getprediction
-      operations:
       - method: GET
         name: getprediction
         description: Retrieve prediction results
         call: piscescsm.getprediction
+        with:
+          job_id: rest.job_id
         outputParameters:
         - type: object
           mapping: $.
   - type: mcp
-    port: 9090
     namespace: piscescsm-mcp
+    port: 9090
     transport: http
-    description: MCP adapter for piscesCSM API for AI agent use.
+    description: MCP adapter for piscesCSM API. One tool per consumed operation, routed inline through this capability's consumes
+      block.
     tools:
-    - name: submitprediction
+    - name: submit-drug-pair-prediction-job
       description: Submit a drug-pair prediction job
       hints:
         readOnly: false
         destructive: false
         idempotent: false
       call: piscescsm.submitprediction
+      with:
+        body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: getprediction
+    - name: retrieve-prediction-results
       description: Retrieve prediction results
       hints:
         readOnly: true
@@ -92,11 +106,6 @@ capability:
       call: piscescsm.getprediction
       with:
         job_id: tools.job_id
-      inputParameters:
-      - name: job_id
-        type: string
-        description: Job identifier returned by submitPrediction.
-        required: true
       outputParameters:
       - type: object
         mapping: $.
