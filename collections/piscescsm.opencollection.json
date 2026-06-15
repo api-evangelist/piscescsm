@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "piscesCSM API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieve prediction results",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://biosig.lab.uq.edu.au/piscescsm/api/predict",
+        "params": [
+          {
+            "name": "job_id",
+            "value": "api_166596586018",
+            "type": "query",
+            "description": "Job identifier returned by submitPrediction."
+          }
+        ]
+      },
+      "docs": "Retrieve the status or results of a previously submitted job using the job identifier returned at submission time."
+    },
+    {
+      "info": {
+        "name": "Submit a drug-pair prediction job",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://biosig.lab.uq.edu.au/piscescsm/api/predict",
+        "body": {
+          "type": "multipart-form",
+          "data": [
+            {
+              "name": "drugA",
+              "type": "text",
+              "value": ""
+            },
+            {
+              "name": "drugB",
+              "type": "text",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "docs": "Submit a pair of drugs (as SMILES strings) for piscesCSM prediction. The response returns a unique job identifier used to poll for results."
+    }
+  ],
+  "bundled": true
+}

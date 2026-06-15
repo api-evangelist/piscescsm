@@ -1,43 +1,49 @@
 # piscesCSM (piscescsm)
-Here we offer an API (Application Programming Interface) to assist users in integrating piscesCSM into their research pipelines. In summary, all jobs submitted to our server are labelled with a unique ID which is used to query the status of the job.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/piscescsm/refs/heads/main/apis.yml)
+Here we offer an API (Application Programming Interface) to assist users in integrating piscesCSM into their research pipelines.In summary, all jobs submitted to our server are labelled with a unique ID which is used to query the status of the job.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/piscescsm/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/piscescsm/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Index 
-- **Position:** Consumer 
-- **Access:** 3rd-Party 
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
 
-## Tags:
+## Tags
 
- - Bioinformatics, Drug Discovery, Cancer
+- Bioinformatics
+- Drug Discovery
+- Cancer
 
 ## Timestamps
 
-- **Created:** 2025-03-01 
-- **Modified:** 2026-04-28 
+- **Created:** 2025-03-01
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### piscesCSM
-Here we offer an API (Application Programming Interface) to assist users in integrating piscesCSM into their research pipelines. In summary, all jobs submitted to our server are labelled with a unique ID which is used to query the status of the job.
 
-**Human URL:** [https://biosig.lab.uq.edu.au/piscescsm/docs](https://biosig.lab.uq.edu.au/piscescsm/docs)
+Here we offer an API (Application Programming Interface) to assist users in integrating piscesCSM into their research pipelines.In summary, all jobs submitted to our server are labelled with a unique ID which is used to query the status of the job.
 
-**Base URL:** https://biosig.lab.uq.edu.au/piscescsm/api
+- **Human URL:** [https://biosig.lab.uq.edu.au/piscescsm/docs](https://biosig.lab.uq.edu.au/piscescsm/docs)
+- **Base URL:** `https://biosig.lab.uq.edu.au/piscescsm/api`
 
-#### Tags:
+#### Tags
 
- - Bioinformatics, Drug Discovery, Cancer
+- Bioinformatics
+- Drug Discovery
+- Cancer
 
 #### Properties
 
 - [Documentation](https://biosig.lab.uq.edu.au/piscescsm/docs)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/piscescsm/refs/heads/main/openapi/piscescsm-openapi.yml)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/piscescsm/refs/heads/main/openapi/piscescsm-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/piscescsm.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/piscescsm.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com

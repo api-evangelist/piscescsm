@@ -1,0 +1,301 @@
+{
+  "item": [
+    {
+      "id": "e010fd5c-a99f-4486-ba93-6811f4653101",
+      "name": "Submit a drug-pair prediction job",
+      "request": {
+        "name": "Submit a drug-pair prediction job",
+        "description": {
+          "content": "Submit a pair of drugs (as SMILES strings) for piscesCSM prediction. The response returns a unique job identifier used to poll for results.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "predict"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "multipart/form-data"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "drugA",
+              "value": "<string>",
+              "type": "text",
+              "description": "(Required) SMILES string for the first drug."
+            },
+            {
+              "key": "drugB",
+              "value": "<string>",
+              "type": "text",
+              "description": "(Required) SMILES string for the second drug."
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "4b3ae2d8-d0ce-4a03-bdd7-71cd79906f66",
+          "name": "Job successfully submitted.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "predict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "description": {
+                    "content": "(Required) SMILES string for the first drug.",
+                    "type": "text/plain"
+                  },
+                  "key": "drugA",
+                  "value": "CC(=O)C(=O)O",
+                  "type": "text"
+                },
+                {
+                  "description": {
+                    "content": "(Required) SMILES string for the second drug.",
+                    "type": "text/plain"
+                  },
+                  "key": "drugB",
+                  "value": "C1=CN=CC=C1C(=O)NN",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"job_id\": \"api_166596586018\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "7a8f1b14-69ea-4794-a2d7-d4dd3436f5a5",
+          "name": "Invalid SMILES input.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "predict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "description": {
+                    "content": "(Required) SMILES string for the first drug.",
+                    "type": "text/plain"
+                  },
+                  "key": "drugA",
+                  "value": "CC(=O)C(=O)O",
+                  "type": "text"
+                },
+                {
+                  "description": {
+                    "content": "(Required) SMILES string for the second drug.",
+                    "type": "text/plain"
+                  },
+                  "key": "drugB",
+                  "value": "C1=CN=CC=C1C(=O)NN",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "379cc8f9-1cc7-4dc5-ac7e-bc1bbd4f3531",
+      "name": "Retrieve prediction results",
+      "request": {
+        "name": "Retrieve prediction results",
+        "description": {
+          "content": "Retrieve the status or results of a previously submitted job using the job identifier returned at submission time.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "predict"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "job_id",
+              "value": "<string>",
+              "description": "(Required) Job identifier returned by submitPrediction."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "dcda1a47-48fb-41fb-ade8-cff00e7ad2be",
+          "name": "Job status or completed prediction results.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "predict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "job_id",
+                  "value": "api_166596586018"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"running\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "16ae3d1c-731b-4a7d-ad4e-9aa94e9bcfad",
+          "name": "Job not found.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "predict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "job_id",
+                  "value": "api_166596586018"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://biosig.lab.uq.edu.au/piscescsm/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fe1a3ffb-c5a8-44d4-b456-a7a4e5215e52",
+    "name": "piscesCSM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The piscesCSM API allows users to integrate piscesCSM drug-pair cancer sensitivity prediction into research pipelines. Submit a pair of small molecules as SMILES strings, then poll the prediction status using the returned job identifier. Results include predictions across multiple cancer types and molecular descriptors for both drugs.\n\nContact Support:\n Name: piscesCSM Support",
+      "type": "text/plain"
+    }
+  }
+}
