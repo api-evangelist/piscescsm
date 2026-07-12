@@ -38,3 +38,6 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common: []
+common:
+- type: DomainSecurity
+  url: security/piscescsm-domain-security.yml
