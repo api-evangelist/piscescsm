@@ -39,5 +39,7 @@ maintainers:
     email: kin@apievangelist.com
 common: []
 common:
+- type: AgenticAccess
+  url: agentic-access/piscescsm-agentic-access.yml
 - type: DomainSecurity
   url: security/piscescsm-domain-security.yml
