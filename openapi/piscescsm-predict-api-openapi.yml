@@ -1,26 +1,21 @@
 openapi: 3.0.3
 info:
-  title: piscesCSM API
-  description: >-
-    The piscesCSM API allows users to integrate piscesCSM drug-pair cancer
-    sensitivity prediction into research pipelines. Submit a pair of small
-    molecules as SMILES strings, then poll the prediction status using the
-    returned job identifier. Results include predictions across multiple
-    cancer types and molecular descriptors for both drugs.
+  title: piscesCSM Predict API
+  description: The piscesCSM API allows users to integrate piscesCSM drug-pair cancer sensitivity prediction into research pipelines. Submit a pair of small molecules as SMILES strings, then poll the prediction status using the returned job identifier. Results include predictions across multiple cancer types and molecular descriptors for both drugs.
   version: '1.0'
   contact:
     name: piscesCSM Support
     url: https://biosig.lab.uq.edu.au/piscescsm/
 servers:
-  - url: https://biosig.lab.uq.edu.au/piscescsm/api
-    description: Production server
+- url: https://biosig.lab.uq.edu.au/piscescsm/api
+  description: Production server
+tags:
+- name: Predict
 paths:
   /predict:
     post:
       summary: Submit a drug-pair prediction job
-      description: >-
-        Submit a pair of drugs (as SMILES strings) for piscesCSM prediction.
-        The response returns a unique job identifier used to poll for results.
+      description: Submit a pair of drugs (as SMILES strings) for piscesCSM prediction. The response returns a unique job identifier used to poll for results.
       operationId: submitPrediction
       requestBody:
         required: true
@@ -29,8 +24,8 @@ paths:
             schema:
               type: object
               required:
-                - drugA
-                - drugB
+              - drugA
+              - drugB
               properties:
                 drugA:
                   type: string
@@ -54,20 +49,20 @@ paths:
                     example: api_166596586018
         '400':
           description: Invalid SMILES input.
+      tags:
+      - Predict
     get:
       summary: Retrieve prediction results
-      description: >-
-        Retrieve the status or results of a previously submitted job using
-        the job identifier returned at submission time.
+      description: Retrieve the status or results of a previously submitted job using the job identifier returned at submission time.
       operationId: getPrediction
       parameters:
-        - in: query
-          name: job_id
-          required: true
-          schema:
-            type: string
-          description: Job identifier returned by submitPrediction.
-          example: api_166596586018
+      - in: query
+        name: job_id
+        required: true
+        schema:
+          type: string
+        description: Job identifier returned by submitPrediction.
+        example: api_166596586018
       responses:
         '200':
           description: Job status or completed prediction results.
@@ -75,18 +70,38 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/JobRunning'
-                  - $ref: '#/components/schemas/PredictionResult'
+                - $ref: '#/components/schemas/JobRunning'
+                - $ref: '#/components/schemas/PredictionResult'
         '404':
           description: Job not found.
+      tags:
+      - Predict
 components:
   schemas:
-    JobRunning:
+    MolecularDescriptors:
       type: object
+      description: Molecular descriptors for an input drug.
       properties:
-        message:
+        smiles:
           type: string
-          example: running
+          description: Canonical SMILES representation.
+        molecular_weight:
+          type: number
+          format: float
+        logp:
+          type: number
+          format: float
+          description: Octanol-water partition coefficient.
+        hydrogen_bond_donors:
+          type: integer
+        hydrogen_bond_acceptors:
+          type: integer
+        rings:
+          type: integer
+        atoms:
+          type: integer
+        rotatable_bonds:
+          type: integer
     PredictionResult:
       type: object
       description: Predictions for multiple cancer types plus molecular descriptors.
@@ -123,27 +138,9 @@ components:
           $ref: '#/components/schemas/MolecularDescriptors'
         drugB:
           $ref: '#/components/schemas/MolecularDescriptors'
-    MolecularDescriptors:
+    JobRunning:
       type: object
-      description: Molecular descriptors for an input drug.
       properties:
-        smiles:
+        message:
           type: string
-          description: Canonical SMILES representation.
-        molecular_weight:
-          type: number
-          format: float
-        logp:
-          type: number
-          format: float
-          description: Octanol-water partition coefficient.
-        hydrogen_bond_donors:
-          type: integer
-        hydrogen_bond_acceptors:
-          type: integer
-        rings:
-          type: integer
-        atoms:
-          type: integer
-        rotatable_bonds:
-          type: integer
+          example: running
