@@ -1,0 +1,149 @@
+openapi: 3.0.3
+info:
+  title: piscesCSM API
+  description: >-
+    The piscesCSM API allows users to integrate piscesCSM drug-pair cancer
+    sensitivity prediction into research pipelines. Submit a pair of small
+    molecules as SMILES strings, then poll the prediction status using the
+    returned job identifier. Results include predictions across multiple
+    cancer types and molecular descriptors for both drugs.
+  version: '1.0'
+  contact:
+    name: piscesCSM Support
+    url: https://biosig.lab.uq.edu.au/piscescsm/
+servers:
+  - url: https://biosig.lab.uq.edu.au/piscescsm/api
+    description: Production server
+paths:
+  /predict:
+    post:
+      summary: Submit a drug-pair prediction job
+      description: >-
+        Submit a pair of drugs (as SMILES strings) for piscesCSM prediction.
+        The response returns a unique job identifier used to poll for results.
+      operationId: submitPrediction
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - drugA
+                - drugB
+              properties:
+                drugA:
+                  type: string
+                  description: SMILES string for the first drug.
+                  example: CC(=O)C(=O)O
+                drugB:
+                  type: string
+                  description: SMILES string for the second drug.
+                  example: C1=CN=CC=C1C(=O)NN
+      responses:
+        '200':
+          description: Job successfully submitted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job_id:
+                    type: string
+                    description: Unique identifier used to query the status of the job.
+                    example: api_166596586018
+        '400':
+          description: Invalid SMILES input.
+    get:
+      summary: Retrieve prediction results
+      description: >-
+        Retrieve the status or results of a previously submitted job using
+        the job identifier returned at submission time.
+      operationId: getPrediction
+      parameters:
+        - in: query
+          name: job_id
+          required: true
+          schema:
+            type: string
+          description: Job identifier returned by submitPrediction.
+          example: api_166596586018
+      responses:
+        '200':
+          description: Job status or completed prediction results.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/JobRunning'
+                  - $ref: '#/components/schemas/PredictionResult'
+        '404':
+          description: Job not found.
+components:
+  schemas:
+    JobRunning:
+      type: object
+      properties:
+        message:
+          type: string
+          example: running
+    PredictionResult:
+      type: object
+      description: Predictions for multiple cancer types plus molecular descriptors.
+      properties:
+        melanoma:
+          type: number
+          format: float
+          description: Predicted sensitivity score for melanoma.
+        breast:
+          type: number
+          format: float
+          description: Predicted sensitivity score for breast cancer.
+        lung:
+          type: number
+          format: float
+          description: Predicted sensitivity score for lung cancer.
+        general:
+          type: number
+          format: float
+          description: General predicted sensitivity score.
+        prostate:
+          type: number
+          format: float
+          description: Predicted sensitivity score for prostate cancer.
+        colon:
+          type: number
+          format: float
+          description: Predicted sensitivity score for colon cancer.
+        ovarian:
+          type: number
+          format: float
+          description: Predicted sensitivity score for ovarian cancer.
+        drugA:
+          $ref: '#/components/schemas/MolecularDescriptors'
+        drugB:
+          $ref: '#/components/schemas/MolecularDescriptors'
+    MolecularDescriptors:
+      type: object
+      description: Molecular descriptors for an input drug.
+      properties:
+        smiles:
+          type: string
+          description: Canonical SMILES representation.
+        molecular_weight:
+          type: number
+          format: float
+        logp:
+          type: number
+          format: float
+          description: Octanol-water partition coefficient.
+        hydrogen_bond_donors:
+          type: integer
+        hydrogen_bond_acceptors:
+          type: integer
+        rings:
+          type: integer
+        atoms:
+          type: integer
+        rotatable_bonds:
+          type: integer

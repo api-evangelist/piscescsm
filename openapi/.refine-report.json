@@ -1,0 +1,14 @@
+{
+  "provider": "piscescsm",
+  "sources": [
+    "piscescsm-predict-api-openapi.yml"
+  ],
+  "outputs": [
+    "piscescsm-predict-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
