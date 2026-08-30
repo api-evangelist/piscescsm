@@ -55,12 +55,11 @@ apis:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
-common: []
+common:
   - type: CapabilityMap
     url: capabilities/piscescsm-capability-edges.yml
     name: piscesCSM Business Capability Map
-common:
-- type: AgenticAccess
-  url: agentic-access/piscescsm-agentic-access.yml
-- type: DomainSecurity
-  url: security/piscescsm-domain-security.yml
+  - type: AgenticAccess
+    url: agentic-access/piscescsm-agentic-access.yml
+  - type: DomainSecurity
+    url: security/piscescsm-domain-security.yml
