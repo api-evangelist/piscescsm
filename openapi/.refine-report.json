@@ -1,7 +1,7 @@
 {
   "provider": "piscescsm",
   "sources": [
-    "piscescsm-predict-api-openapi.yml"
+    "_original/piscescsm-openapi.yml"
   ],
   "outputs": [
     "piscescsm-predict-api-openapi.yml"
@@ -9,6 +9,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "piscescsm-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "piscescsm-openapi.yml: tagged paths POST /predict -> Predict",
+    "piscescsm-openapi.yml: tagged paths GET /predict -> Predict",
+    "piscescsm-openapi.yml: declared missing tag: Predict",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "piscescsm-predict-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: piscesCSM Predict API
   description: The piscesCSM API allows users to integrate piscesCSM drug-pair cancer sensitivity prediction into research pipelines. Submit a pair of small molecules as SMILES strings, then poll the prediction status using the returned job identifier. Results include predictions across multiple cancer types and molecular descriptors for both drugs.
@@ -78,30 +78,6 @@ paths:
       - Predict
 components:
   schemas:
-    MolecularDescriptors:
-      type: object
-      description: Molecular descriptors for an input drug.
-      properties:
-        smiles:
-          type: string
-          description: Canonical SMILES representation.
-        molecular_weight:
-          type: number
-          format: float
-        logp:
-          type: number
-          format: float
-          description: Octanol-water partition coefficient.
-        hydrogen_bond_donors:
-          type: integer
-        hydrogen_bond_acceptors:
-          type: integer
-        rings:
-          type: integer
-        atoms:
-          type: integer
-        rotatable_bonds:
-          type: integer
     PredictionResult:
       type: object
       description: Predictions for multiple cancer types plus molecular descriptors.
@@ -138,6 +114,30 @@ components:
           $ref: '#/components/schemas/MolecularDescriptors'
         drugB:
           $ref: '#/components/schemas/MolecularDescriptors'
+    MolecularDescriptors:
+      type: object
+      description: Molecular descriptors for an input drug.
+      properties:
+        smiles:
+          type: string
+          description: Canonical SMILES representation.
+        molecular_weight:
+          type: number
+          format: float
+        logp:
+          type: number
+          format: float
+          description: Octanol-water partition coefficient.
+        hydrogen_bond_donors:
+          type: integer
+        hydrogen_bond_acceptors:
+          type: integer
+        rings:
+          type: integer
+        atoms:
+          type: integer
+        rotatable_bonds:
+          type: integer
     JobRunning:
       type: object
       properties:
