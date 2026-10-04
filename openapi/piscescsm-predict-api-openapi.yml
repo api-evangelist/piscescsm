@@ -114,12 +114,6 @@ components:
           $ref: '#/components/schemas/MolecularDescriptors'
         drugB:
           $ref: '#/components/schemas/MolecularDescriptors'
-    JobRunning:
-      type: object
-      properties:
-        message:
-          type: string
-          example: running
     MolecularDescriptors:
       type: object
       description: Molecular descriptors for an input drug.
@@ -144,3 +138,9 @@ components:
           type: integer
         rotatable_bonds:
           type: integer
+    JobRunning:
+      type: object
+      properties:
+        message:
+          type: string
+          example: running
