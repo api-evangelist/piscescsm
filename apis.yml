@@ -56,6 +56,12 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: Plans
+    url: plans/piscescsm-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/piscescsm-rate-limits.yml
+  - type: FinOps
+    url: finops/piscescsm-finops.yml
   - type: CapabilityMap
     url: capabilities/piscescsm-capability-edges.yml
     name: piscesCSM Business Capability Map
