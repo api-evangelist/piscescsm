@@ -1,4 +1,4 @@
-# piscesCSM (piscescsm)
+# piscesCSM
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,48 +66,71 @@
 
 Here we offer an API (Application Programming Interface) to assist users in integrating piscesCSM into their research pipelines.In summary, all jobs submitted to our server are labelled with a unique ID which is used to query the status of the job.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/piscescsm/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/piscescsm/refs/heads/main/apis.yml)
+**Areas:** Bioinformatics · Drug Discovery · Cancer
 
-## Scope
+## piscesCSM on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for piscesCSM is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/piscescsm/](https://apis.io/providers/piscescsm/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (1)
 
-- Bioinformatics
-- Drug Discovery
-- Cancer
+- [piscesCSM Predict API](https://apis.io/apis/piscescsm/piscescsm-predict-api/) — The Predict API from piscesCSM — 1 operation(s) for predict.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-03-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### piscesCSM
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Here we offer an API (Application Programming Interface) to assist users in integrating piscesCSM into their research pipelines.In summary, all jobs submitted to our server are labelled with a unique ID which is used to query the status of the job.
+- [Piscescsm Agentic Access](https://apis.io/agentic-access/piscescsm/piscescsm-agentic-access/)
 
-- **Human URL:** [https://biosig.lab.uq.edu.au/piscescsm/docs](https://biosig.lab.uq.edu.au/piscescsm/docs)
-- **Base URL:** `https://biosig.lab.uq.edu.au/piscescsm/api`
+#### Collections (2)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Bioinformatics
-- Drug Discovery
-- Cancer
+- [piscesCSM API](https://apis.io/collections/piscescsm/open-piscescsm/)
+- [piscesCSM Predict API](https://apis.io/collections/piscescsm/open-piscescsm-predict-api/)
 
-#### Properties
+#### Security (1)
 
-- [Documentation](https://biosig.lab.uq.edu.au/piscescsm/docs)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/piscescsm/refs/heads/main/openapi/piscescsm-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/piscescsm.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/piscescsm.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Maintainers
+- [Piscescsm Domain Security](https://apis.io/security/piscescsm/piscescsm-domain-security/)
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Piscescsm Plans Pricing](https://apis.io/plans/piscescsm/piscescsm-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Piscescsm Rate Limits](https://apis.io/rate-limits/piscescsm/piscescsm-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Piscescsm Finops](https://apis.io/finops/piscescsm/piscescsm-finops/)
+
+## API Evangelist rating
+
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
+
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for piscesCSM: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/piscescsm/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
